@@ -1,6 +1,6 @@
 {
     "$schema": "https://getcomposer.org/schema.json",
-    "name": "laravel/laravel",
+    "name": "vortex/test-slava",
     "type": "project",
     "require": {
         "php": "^8.2",
