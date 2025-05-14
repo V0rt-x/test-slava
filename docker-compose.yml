@@ -1,0 +1,54 @@
+services:
+    test-slava:
+        container_name: test-slava
+        build:
+            context: .
+            dockerfile: docker/Dockerfile
+            args:
+                WWWGROUP: '${WWWGROUP:-1000}'
+                WWWUSER: '${WWWUSER:-1000}'
+        image: test-prime-wood
+        restart: unless-stopped
+        tty: true
+        depends_on:
+            - db
+            - redis
+        ports:
+            - "8032:80"
+        volumes:
+            - '.:/var/www/html'
+        networks:
+            - test-slava
+
+    db:
+        container_name: postgres
+        image: postgres:15.3
+        volumes:
+            - db:/var/lib/postgresql/data
+            - ./docker/db/init-test/payments:/home/init-test
+        environment:
+            - POSTGRES_USER=db
+            - POSTGRES_PASSWORD=db
+            - POSTGRES_DB=test-slava
+        ports:
+            - "54320:5432"
+        networks:
+            - test-slava
+
+    redis:
+        container_name: redis
+        image: bitnami/redis:latest
+        volumes:
+            - redis:/bitnami/redis/data
+        environment:
+            - ALLOW_EMPTY_PASSWORD=yes
+        ports:
+            - "63790:6379"
+        networks:
+            - test-slava
+volumes:
+    db:
+    redis:
+networks:
+    test-slava:
+        name: test-slava
