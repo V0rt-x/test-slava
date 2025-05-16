@@ -1,9 +1,10 @@
 <?php
+declare(strict_types=1);
 
-use App\Http\Controllers\ProductUploadController;
+use App\Http\Controllers\PersonFileUploadController;
 use Illuminate\Support\Facades\Route;
 
-Route::prefix('/products/upload')->group(function () {
-    Route::get('', [ProductUploadController::class, 'showForm']);
-    Route::post('', [ProductUploadController::class, 'upload']);
+Route::prefix('/person/upload')->group(function () {
+    Route::get('', [PersonFileUploadController::class, 'showForm']);
+    Route::post('', [PersonFileUploadController::class, 'upload']);
 });
