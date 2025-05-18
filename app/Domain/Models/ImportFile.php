@@ -12,7 +12,18 @@ class ImportFile
         private int                 $id,
         private FilePath            $path,
         private ImportingEntityType $type,
+        private bool                $imported
     )
     {
+    }
+
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    public function getPath(): FilePath
+    {
+        return $this->path;
     }
 }

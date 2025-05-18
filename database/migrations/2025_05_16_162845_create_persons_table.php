@@ -1,6 +1,6 @@
 <?php
+declare(strict_types=1);
 
-use App\Domain\Enums\ImportingEntityType;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -12,11 +12,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('imports', function (Blueprint $table) {
-            $table->id();
-            $table->enum('importing_entity_type', array_column(ImportingEntityType::cases(), 'value'));
-            $table->string('path');
-            $table->boolean('imported')->default(false);
+        Schema::create('persons', function (Blueprint $table) {
+            $table->bigInteger('id', unsigned: true)->primary();
+            $table->string('first_name');
+            $table->string('last_name');
+            $table->date('date');
             $table->timestamps();
         });
     }
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('imports');
+        Schema::dropIfExists('persons');
     }
 };

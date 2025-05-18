@@ -127,6 +127,16 @@ return [
             'path' => storage_path('logs/laravel.log'),
         ],
 
+        'import' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/imports/default-import.log'),
+            'level' => 'error',
+            'replace_placeholders' => true,
+            'formatter' => Monolog\Formatter\LineFormatter::class,
+            'formatter_with' => [
+                'format' => "%message%\n",
+            ],
+        ],
     ],
 
 ];
