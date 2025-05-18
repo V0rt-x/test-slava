@@ -16,7 +16,6 @@ class Person
         private DateTime $date,
     )
     {
-
     }
 
     public function getId(): Id

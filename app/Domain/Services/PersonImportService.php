@@ -23,7 +23,7 @@ class PersonImportService
             new Id(intval($row['id'])),
             $fullName->getFirstName(),
             $fullName->getLastName(),
-            new DateTime($row['date'], 'd.m.Y')
+            DateTime::fromFormat('d.m.Y', $row['date'])
         );
     }
 }
