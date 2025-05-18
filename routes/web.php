@@ -7,6 +7,6 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('/persons')->group(function () {
     Route::prefix('/upload')->group(function () {
         Route::get('', [PersonFileUploadController::class, 'showForm']);
-        Route::post('', [PersonFileUploadController::class, 'upload']);
+        Route::post('', [PersonFileUploadController::class, 'upload'])->name('persons.upload');
     });
 });

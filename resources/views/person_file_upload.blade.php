@@ -12,7 +12,7 @@
 @if(session('error'))
     <p>{{ session('error') }}</p>
 @endif
-<form action="/person/upload" method="POST" enctype="multipart/form-data">
+<form action="{{ route('persons.upload') }}" method="POST" enctype="multipart/form-data">
     @csrf
     <input type="file" name="file">
     <button type="submit">Загрузить</button>
