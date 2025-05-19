@@ -16,7 +16,7 @@ class ImportRun extends Command
      * @var string
      */
     protected $signature = 'import:run
-                            {type? : The name of the queue connection to work}';
+                            {type? : Type of import}';
 
     /**
      * The console command description.
@@ -31,6 +31,8 @@ class ImportRun extends Command
      */
     public function handle(ImportHandler $handler): void
     {
+        $start = microtime(true);
+
         if (!$importingEntityType = ImportingEntityType::tryFrom($this->argument('type'))) {
             throw new \Exception('Передан неверный тип импортируемой сущности');
         }
@@ -38,5 +40,7 @@ class ImportRun extends Command
         $command = new ImportCommand($importingEntityType);
 
         $handler->handle($command);
+
+        $this->output->writeln(sprintf('Импорт завершен за %f секунд', microtime(true) - $start));
     }
 }

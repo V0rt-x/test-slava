@@ -55,7 +55,7 @@ COPY docker/entrypoint.sh /usr/local/bin/entrypoint.sh
 
 RUN chmod +x /usr/local/bin/entrypoint.sh
 
-COPY docker/php/php.ini /usr/local/etc/php-fpm.d/40-custom.ini
+COPY docker/php/php.ini /usr/local/etc/php/conf.d/40-custom.ini
 COPY docker/php/zz-docker.conf /usr/local/etc/php-fpm.d/zz-docker.conf
 RUN echo "" > /usr/local/etc/php-fpm.d/www.conf
 
